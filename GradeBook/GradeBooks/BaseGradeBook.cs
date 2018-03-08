@@ -110,29 +110,38 @@ namespace GradeBook.GradeBooks
         public virtual double GetGPA(char letterGrade, StudentType studentType)
         {
             var gpa = 0;
-            switch (letterGrade)
+            if (letterGrade == 'A')
             {
-                case 'A':
-                    return gpa = 4;
-                    break;
-                case 'B':
-                    return gpa = 3;
-                    break;
-                case 'C':
-                    return gpa = 2;
-                    break;
-                case 'D':
-                    return gpa = 1;
-                    break;
-                case 'F':
-                    return gpa = 0;
-                    break;
+                gpa = 4;
+            }
+            else if (letterGrade == 'B')
+            {
+                gpa = 3;
+            }
+            else if (letterGrade == 'C')
+            {
+                gpa = 2;
+            }
+            else if (letterGrade == 'D')
+            {
+                gpa = 1;
+            }
+            else if (letterGrade == 'E')
+            {
+                gpa = 1;
+            }
+            else
+            {
+                gpa = 0;
             }
 
-            if (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled)
+            if (studentType == StudentType.Honors && IsWeighted)
             {
-                if (IsWeighted == true)
-                    gpa++;
+                gpa++;
+            }
+            if (studentType == StudentType.DualEnrolled && IsWeighted)
+            {
+                gpa++;
             }
             return gpa;
         }
